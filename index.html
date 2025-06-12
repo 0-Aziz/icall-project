@@ -3,16 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <title>ICALL - عبدالعزيز بن سلطان بن رباح الخطابي</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #4CAF50; /* A pleasant green */
+      --secondary-color: #45a049; /* Darker green for hover */
+      --text-color: #333;
+      --light-bg: #e8f5e9; /* Very light green background */
+      --card-bg: #ffffff;
+      --shadow: 0 8px 16px rgba(0,0,0,0.1); /* More pronounced shadow */
+      --border-radius: 12px;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--light-bg);
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Full viewport height */
+      padding: 20px; /* Padding for smaller screens */
+      box-sizing: border-box; /* Include padding in element's total width and height */
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background: var(--card-bg);
+      padding: 50px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      animation: fadeInScale 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    h1 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-weight: 700;
+      font-size: 3em; /* Larger main title */
+      letter-spacing: -1px;
+    }
+
+    h2 {
+      color: #666;
+      margin-bottom: 30px;
+      font-weight: 400;
+      font-size: 1.4em;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 40px;
+      color: #555;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px; /* Space between buttons */
+      justify-content: center;
+      flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 35px; /* More padding for larger buttons */
+      background: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px; /* Slightly more rounded buttons */
+      font-size: 1.3em; /* Larger font size for buttons */
+      font-weight: 500;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Button shadow */
+    }
+
+    .btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px); /* Lift effect on hover */
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3); /* Enhanced shadow on hover */
+    }
+
+    .btn:active {
+      transform: translateY(0); /* Press down effect on click */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>ICALL Project</h1>
     <h2>By: عبدالعزيز بن سلطان بن رباح الخطابي</h2>
-    <p>Learn about motivation and learning strategies in second language acquisition.</p>
+    <p>Explore concepts of motivation, learning strategies, and individual differences in second language acquisition through interactive study and quiz modules.</p>
     <div class="buttons">
-      <a href="study.html" class="btn">Study</a>
-      <a href="quiz.html" class="btn">Quiz</a>
+      <a href="study.html" class="btn">Study Module</a>
+      <a href="quiz.html" class="btn">Take the Quiz</a>
     </div>
   </div>
 </body>

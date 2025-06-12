@@ -3,52 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <title>ICALL Project Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4361ee;
-      --secondary: #3f37c9;
-      --light: #f8f9fa;
-      --dark: #212529;
-      --success: #4bb543;
-      --danger: #cc0000;
+      --primary: #4CAF50; /* Primary green */
+      --secondary: #45a049; /* Darker green for hover */
+      --light-bg: #e8f5e9; /* Very light green background */
+      --card-bg: #ffffff;
+      --text-color: #333;
+      --success: #28a745; /* Slightly different success green */
+      --danger: #dc3545; /* Standard red for danger */
+      --warning: #ffc107; /* Standard yellow for warning */
+      --border-color: #e0e0e0;
+      --shadow: 0 4px 8px rgba(0,0,0,0.05);
+      --border-radius: 8px;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Roboto', sans-serif;
       line-height: 1.6;
-      color: var(--dark);
-      background-color: #f5f7fa;
+      color: var(--text-color);
+      background-color: var(--light-bg);
       margin: 0;
-      padding: 20px;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
     }
 
     .container {
       max-width: 800px;
       margin: 0 auto;
-      background: white;
+      background: var(--card-bg);
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
       color: var(--primary);
       text-align: center;
       margin-bottom: 30px;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 2.5em;
     }
 
     .quiz-item {
       margin-bottom: 25px;
       padding: 20px;
-      border-radius: 8px;
-      background: var(--light);
+      border-radius: var(--border-radius);
+      background: #fdfdfd; /* A very light off-white for quiz items */
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
 
     .quiz-item p {
       font-weight: 500;
       margin-top: 0;
       font-size: 1.1em;
+      color: var(--text-color);
     }
 
     .options {
@@ -67,15 +89,16 @@
       display: flex;
       align-items: center;
       padding: 12px 15px;
-      background: white;
+      background: var(--card-bg);
       border-radius: 6px;
       cursor: pointer;
-      transition: all 0.2s;
-      border: 1px solid #ddd;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border-color);
     }
 
     .option:hover {
-      background: #e9ecef;
+      background: var(--light-bg); /* Use light-bg for option hover */
+      border-color: var(--primary);
     }
 
     .option input {
@@ -88,6 +111,17 @@
       color: var(--primary);
     }
 
+    /* New classes for correct/wrong answers */
+    .option.correct-answer-style {
+      background-color: #e6f7e6; /* Lighter success green */
+      border-color: var(--success);
+    }
+
+    .option.wrong-answer-style {
+      background-color: #ffebeb; /* Lighter danger red */
+      border-color: var(--danger);
+    }
+
     button {
       display: block;
       width: 100%;
@@ -98,36 +132,44 @@
       border-radius: 6px;
       font-size: 1.1em;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s ease, transform 0.2s ease;
       margin: 30px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     button:hover {
       background: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     #result {
       padding: 20px;
-      border-radius: 8px;
+      border-radius: var(--border-radius);
       margin-top: 20px;
       text-align: center;
       font-size: 1.2em;
+      font-weight: 500;
     }
 
     .result-box.success {
-      background-color: #e6f7e6;
+      background-color: #e6ffe6; /* Lighter success green */
       border: 1px solid var(--success);
       color: var(--success);
     }
 
     .result-box.warning {
-      background-color: #fffde6;
-      border: 1px solid orange;
-      color: orange;
+      background-color: #fff8e1; /* Lighter warning yellow */
+      border: 1px solid var(--warning);
+      color: #da9e00; /* Darker warning text for contrast */
     }
 
     .result-box.danger {
-      background-color: #ffebeb;
+      background-color: #ffebe6; /* Lighter danger red */
       border: 1px solid var(--danger);
       color: var(--danger);
     }
@@ -135,15 +177,22 @@
     .btn {
       display: inline-block;
       padding: 10px 20px;
-      background: #6c757d;
+      background: #6c757d; /* Neutral gray for back button */
       color: white;
       text-decoration: none;
       border-radius: 6px;
-      transition: background 0.2s;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .btn:hover {
       background: #5a6268;
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
 
     .text-center {
@@ -164,15 +213,15 @@
           </label>
           <label class="option">
             <input type="radio" name="q1" value="b">
-            <span class="option-label">B.</span> Learning due to personal interest
+            <span class="option-label">B.</span> Learning because of parental pressure
           </label>
           <label class="option">
             <input type="radio" name="q1" value="c">
-            <span class="option-label">C.</span> Learning because of parental pressure
+            <span class="option-label">C.</span> Learning to avoid punishment
           </label>
           <label class="option">
             <input type="radio" name="q1" value="d">
-            <span class="option-label">D.</span> Learning to avoid punishment
+            <span class="option-label">D.</span> Learning due to personal interest
           </label>
         </div>
       </div>
@@ -182,11 +231,11 @@
         <div class="options">
           <label class="option">
             <input type="radio" name="q2" value="a">
-            <span class="option-label">A.</span> They avoid challenging tasks
+            <span class="option-label">A.</span> They demonstrate sustained effort
           </label>
           <label class="option">
             <input type="radio" name="q2" value="b">
-            <span class="option-label">B.</span> They demonstrate sustained effort
+            <span class="option-label">B.</span> They avoid challenging tasks
           </label>
           <label class="option">
             <input type="radio" name="q2" value="c">
@@ -208,11 +257,11 @@
           </label>
           <label class="option">
             <input type="radio" name="q3" value="b">
-            <span class="option-label">B.</span> The psychological and neurobiological factors that enable humans to acquire, use, comprehend, and produce language
+            <span class="option-label">B.</span> The historical development of languages
           </label>
           <label class="option">
             <input type="radio" name="q3" value="c">
-            <span class="option-label">C.</span> The historical development of languages
+            <span class="option-label">C.</span> The psychological and neurobiological factors that enable humans to acquire, use, comprehend, and produce language
           </label>
           <label class="option">
             <input type="radio" name="q3" value="d">
@@ -230,15 +279,15 @@
           </label>
           <label class="option">
             <input type="radio" name="q4" value="b">
-            <span class="option-label">B.</span> The study of how language varies and changes according to social factors
+            <span class="option-label">B.</span> The study of animal communication
           </label>
           <label class="option">
             <input type="radio" name="q4" value="c">
-            <span class="option-label">C.</span> The study of animal communication
+            <span class="option-label">C.</span> The study of classical literature
           </label>
           <label class="option">
             <input type="radio" name="q4" value="d">
-            <span class="option-label">D.</span> The study of classical literature
+            <span class="option-label">D.</span> The study of how language varies and changes according to social factors
           </label>
         </div>
       </div>
@@ -248,11 +297,11 @@
         <div class="options">
           <label class="option">
             <input type="radio" name="q5" value="a">
-            <span class="option-label">A.</span> To analyze the sound systems of languages
+            <span class="option-label">A.</span> To examine how context contributes to meaning
           </label>
           <label class="option">
             <input type="radio" name="q5" value="b">
-            <span class="option-label">B.</span> To examine how context contributes to meaning
+            <span class="option-label">B.</span> To analyze the sound systems of languages
           </label>
           <label class="option">
             <input type="radio" name="q5" value="c">
@@ -296,11 +345,11 @@
           </label>
           <label class="option">
             <input type="radio" name="q7" value="b">
-            <span class="option-label">B.</span> The study of the sound system of a language
+            <span class="option-label">B.</span> The study of meaning in language
           </label>
           <label class="option">
             <input type="radio" name="q7" value="c">
-            <span class="option-label">C.</span> The study of meaning in language
+            <span class="option-label">C.</span> The study of the sound system of a language
           </label>
           <label class="option">
             <input type="radio" name="q7" value="d">
@@ -314,11 +363,11 @@
         <div class="options">
           <label class="option">
             <input type="radio" name="q8" value="a">
-            <span class="option-label">A.</span> The use of language in literature
+            <span class="option-label">A.</span> The structure of words and how they are formed
           </label>
           <label class="option">
             <input type="radio" name="q8" value="b">
-            <span class="option-label">B.</span> The structure of words and how they are formed
+            <span class="option-label">B.</span> The use of language in literature
           </label>
           <label class="option">
             <input type="radio" name="q8" value="c">
@@ -340,15 +389,15 @@
           </label>
           <label class="option">
             <input type="radio" name="q9" value="b">
-            <span class="option-label">B.</span> The study of meaning in language
+            <span class="option-label">B.</span> The study of dialectal variations
           </label>
           <label class="option">
             <input type="radio" name="q9" value="c">
-            <span class="option-label">C.</span> The study of dialectal variations
+            <span class="option-label">C.</span> The study of writing systems
           </label>
           <label class="option">
             <input type="radio" name="q9" value="d">
-            <span class="option-label">D.</span> The study of writing systems
+            <span class="option-label">D.</span> The study of meaning in language
           </label>
         </div>
       </div>
@@ -362,11 +411,11 @@
           </label>
           <label class="option">
             <input type="radio" name="q10" value="b">
-            <span class="option-label">B.</span> Real-world problems such as language teaching, translation, and forensic linguistics
+            <span class="option-label">B.</span> The creation of new languages
           </label>
           <label class="option">
             <input type="radio" name="q10" value="c">
-            <span class="option-label">C.</span> The creation of new languages
+            <span class="option-label">C.</span> Real-world problems such as language teaching, translation, and forensic linguistics
           </label>
           <label class="option">
             <input type="radio" name="q10" value="d">
