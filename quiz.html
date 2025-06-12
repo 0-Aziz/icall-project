@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz - ICALL</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz</h1>
+    <form id="quizForm">
+      <p>1. What is intrinsic motivation?</p>
+      <input type="radio" name="q1" value="a"> Getting a job promotion<br>
+      <input type="radio" name="q1" value="b"> Learning because of personal interest<br>
+
+      <p>2. Which of the following is a learning strategy?</p>
+      <input type="radio" name="q2" value="a"> Watching TV<br>
+      <input type="radio" name="q2" value="b"> Summarizing and planning<br>
+
+      <p>3. Why is motivation important in language learning?</p>
+      <input type="radio" name="q3" value="a"> It is not important<br>
+      <input type="radio" name="q3" value="b"> It helps with persistence and progress<br>
+
+      <button type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+    <div id="result"></div>
+    <a href="index.html" class="btn">Back to Home</a>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
