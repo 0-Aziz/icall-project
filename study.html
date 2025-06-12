@@ -1,20 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Study - ICALL</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+    .btn {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Study Content</h1>
-    <p><strong>Motivation:</strong> The internal or external drive that encourages learners to acquire a new language.</p>
-    <ul>
-      <li><strong>Intrinsic Motivation:</strong> Learning out of personal interest or satisfaction.</li>
-      <li><strong>Extrinsic Motivation:</strong> Learning for external rewards such as job opportunities or grades.</li>
-    </ul>
-    <p><strong>Learning Strategies:</strong> Techniques used to improve learning, such as summarizing or planning.</p>
-    <a href="index.html" class="btn">Back to Home</a>
+    <h1>Study Module</h1>
+
+    <div class="section active" id="section1">
+      <h2>1. What is Motivation?</h2>
+      <p>Motivation is the internal drive or desire to achieve a goal in language learning. It plays a key role in second language acquisition (SLA), influencing effort, persistence, and overall success.</p>
+      <p>According to Dörnyei (2015), motivation is the prerequisite for all other factors in SLA.</p>
+      <button class="btn" onclick="nextSection(1)">Continue</button>
+    </div>
+
+    <div class="section" id="section2">
+      <h2>2. Why is Motivation Crucial?</h2>
+      <ul>
+        <li>Compensates for lack of aptitude or poor conditions</li>
+        <li>Keeps learners engaged during challenges</li>
+        <li>Drives learners toward goals despite difficulties (Dörnyei, 2015)</li>
+        <li>Closely tied to attitude (Gardner & Lambert, 1972)</li>
+      </ul>
+      <button class="btn" onclick="nextSection(2)">Continue</button>
+    </div>
+
+    <div class="section" id="section3">
+      <h2>3. Types of Motivation</h2>
+      <ul>
+        <li><strong>Intrinsic:</strong> Personal interest, curiosity, enjoyment (e.g., learning to understand a culture)</li>
+        <li><strong>Extrinsic:</strong> Driven by rewards, pressure (e.g., grades, promotions)</li>
+      </ul>
+      <button class="btn" onclick="nextSection(3)">Continue</button>
+    </div>
+
+    <div class="section" id="section4">
+      <h2>4. Learning Strategies</h2>
+      <p>Learning strategies are specific actions learners take to improve acquisition, such as:</p>
+      <ul>
+        <li>Memorization, practice routines</li>
+        <li>Monitoring, planning, and summarizing</li>
+        <li>Functional vs. formal use (Bialystok, 1981)</li>
+      </ul>
+      <button class="btn" onclick="nextSection(4)">Continue</button>
+    </div>
+
+    <div class="section" id="section5">
+      <h2>5. Oxford’s Strategy Categories</h2>
+      <ul>
+        <li>Memory</li>
+        <li>Cognitive</li>
+        <li>Compensation</li>
+        <li>Metacognitive</li>
+        <li>Affective</li>
+        <li>Social</li>
+      </ul>
+      <p>These strategies help learners plan, manage emotions, and interact effectively.</p>
+      <button class="btn" onclick="nextSection(5)">Continue</button>
+    </div>
+
+    <div class="section" id="section6">
+      <h2>6. Learning Styles</h2>
+      <p>Styles reflect how individuals prefer to process information. Common types include:</p>
+      <ul>
+        <li>Visual, auditory, kinesthetic, reading/writing</li>
+        <li>Planner vs. spontaneous, independent vs. group</li>
+      </ul>
+      <button class="btn" onclick="nextSection(6)">Continue</button>
+    </div>
+
+    <div class="section" id="section7">
+      <h2>7. Individual Differences (IDs)</h2>
+      <ul>
+        <li><strong>Cognitive:</strong> Aptitude, memory</li>
+        <li><strong>Affective:</strong> Motivation, attitude</li>
+        <li><strong>Environmental:</strong> Teaching methods, exposure</li>
+      </ul>
+      <p>Understanding IDs helps teachers personalize learning and support diverse learners.</p>
+      <button class="btn" onclick="nextSection(7)">Continue</button>
+    </div>
+
+    <div class="section" id="section8">
+      <h2>8. SLA Principles</h2>
+      <ul>
+        <li>L2 learning is harder than L1</li>
+        <li>Most learners don’t reach native-like fluency</li>
+        <li>Affective factors are crucial</li>
+        <li>Input alone isn’t enough – interaction is key</li>
+        <li>No one perfect method of instruction</li>
+      </ul>
+      <button class="btn" onclick="nextSection(8)">Continue</button>
+    </div>
+
+    <div class="section" id="section9">
+      <h2>9. Assessment in SLA</h2>
+      <p>Effective assessment helps guide instruction and motivate learners. Key ideas:</p>
+      <ul>
+        <li>Use both formative and summative methods</li>
+        <li>Provide feedback to support progress</li>
+        <li>Encourage second chances and correction</li>
+      </ul>
+      <button class="btn" onclick="nextSection(9)">Continue</button>
+    </div>
+
+    <div class="section" id="section10">
+      <h2>10. Alternative Assessment</h2>
+      <ul>
+        <li>Focus on real-world performance</li>
+        <li>Includes projects, self-assessment, and peer feedback</li>
+        <li>Gives ongoing feedback instead of one-time grades</li>
+      </ul>
+      <p>This helps learners understand their strengths and areas for improvement.</p>
+      <a href="index.html" class="btn">Back to Home</a>
+    </div>
   </div>
+
+  <script>
+    function nextSection(current) {
+      document.getElementById('section' + current).classList.remove('active');
+      const next = document.getElementById('section' + (current + 1));
+      if (next) next.classList.add('active');
+    }
+  </script>
 </body>
 </html>
