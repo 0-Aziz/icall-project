@@ -1,19 +1,11 @@
 function submitQuiz() {
   const answers = {
-    q1: "b", // Intrinsic motivation
-    q2: "b", // Sustained effort
-    q3: "b", // Compensates for deficiencies
-    q4: "b", // Metacognitive strategy
-    q5: "b", // Varies across contexts
-    q6: "d", // Competition (not an ACTFL standard)
-    q7: "b", // Real-world assessment
-    q8: "b", // Shoe size (irrelevant)
-    q9: "b", // Learning style preferences
-    q10: "b" // Enhances autonomy
+    q1: "b", q2: "b", q3: "b", q4: "b", q5: "b",
+    q6: "d", q7: "b", q8: "b", q9: "b", q10: "b"
   };
 
   let score = 0;
-  const total = Object.keys(answers).length; // Total questions (10)
+  const total = Object.keys(answers).length;
 
   for (let q in answers) {
     const selected = document.querySelector(`input[name="${q}"]:checked`);
@@ -22,7 +14,6 @@ function submitQuiz() {
     }
   }
 
-  // Display result with percentage
   const percentage = (score / total) * 100;
   document.getElementById("result").innerHTML = `
     <h2>Your Score: ${score} / ${total} (${percentage.toFixed(1)}%)</h2>
@@ -31,8 +22,8 @@ function submitQuiz() {
 }
 
 function getFeedback(percentage) {
-  if (percentage >= 90) return "Excellent! You mastered the material.";
-  else if (percentage >= 70) return "Good job! You understand most concepts.";
-  else if (percentage >= 50) return "Keep practicing! Review the PDF for better results.";
-  else return "Try again after reviewing the key concepts.";
+  if (percentage >= 90) return "Excellent! You clearly understood the material.";
+  else if (percentage >= 70) return "Well done! Review a few concepts to improve.";
+  else if (percentage >= 50) return "Keep studying! Revisit what you learned.";
+  else return "Review the material and try again!";
 }
