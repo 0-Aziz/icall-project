@@ -7,23 +7,53 @@ function submitQuiz() {
   let score = 0;
   const total = Object.keys(answers).length;
 
+  // Highlight correct answers and count score
   for (let q in answers) {
+    const correctAnswer = answers[q];
     const selected = document.querySelector(`input[name="${q}"]:checked`);
-    if (selected && selected.value === answers[q]) {
-      score++;
+    
+    // Highlight all correct answers in green
+    document.querySelectorAll(`input[name="${q}"][value="${correctAnswer}"]`).forEach(el => {
+      el.parentElement.style.backgroundColor = '#e6f7e6';
+      el.parentElement.style.borderColor = 'var(--success)';
+    });
+    
+    if (selected) {
+      if (selected.value === correctAnswer) {
+        score++;
+      } else {
+        // Highlight wrong answers in red
+        selected.parentElement.style.backgroundColor = '#ffebeb';
+        selected.parentElement.style.borderColor = 'var(--danger)';
+      }
     }
   }
 
-  const percentage = (score / total) * 100;
-  document.getElementById("result").innerHTML = `
-    <h2>Your Score: ${score} / ${total} (${percentage.toFixed(1)}%)</h2>
-    <p>${getFeedback(percentage)}</p>
-  `;
-}
+  const percentage = Math.round((score / total) * 100);
+  let feedback = '';
+  let resultClass = '';
+  
+  if (percentage >= 90) {
+    feedback = 'Excellent! You clearly understood the material.';
+    resultClass = 'success';
+  } else if (percentage >= 70) {
+    feedback = 'Well done! Review a few concepts to improve.';
+    resultClass = 'success';
+  } else if (percentage >= 50) {
+    feedback = 'Keep studying! Revisit what you learned.';
+    resultClass = 'warning';
+  } else {
+    feedback = 'Review the material and try again!';
+    resultClass = 'danger';
+  }
 
-function getFeedback(percentage) {
-  if (percentage >= 90) return "Excellent! You clearly understood the material.";
-  else if (percentage >= 70) return "Well done! Review a few concepts to improve.";
-  else if (percentage >= 50) return "Keep studying! Revisit what you learned.";
-  else return "Review the material and try again!";
+  document.getElementById("result").innerHTML = `
+    <div class="result-box ${resultClass}">
+      <h2>Your Score: ${score}/${total} (${percentage}%)</h2>
+      <p>${feedback}</p>
+    </div>
+  `;
+  
+  // Scroll to results
+  document.getElementById("result").scrollIntoView({ behavior: 'smooth' });
 }
